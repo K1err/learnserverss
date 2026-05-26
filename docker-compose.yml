@@ -2,7 +2,7 @@ services:
   app:
     image: httpd:latest
     ports:
-      - 8080:80
+      - 80:80
     volumes:
       - ./html:/usr/local/apache2/htdocs
   node:
@@ -17,9 +17,15 @@ services:
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: example
-
+    volumes:
+      - ta25adbdata:/var/lib/mysql
+    ports:
+      - 33061:3306
   adminer:
     image: adminer
     restart: always
     ports:
-      - 8081:8081
+      - 8080:8080
+
+volumes:
+  ta25adbdata:
